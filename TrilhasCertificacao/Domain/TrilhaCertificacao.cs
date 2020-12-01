@@ -14,6 +14,6 @@ namespace TrilhasCertificacao.Domain
         public Guid TrilhaId { get; set; }
         public Guid CertificacaoId { get; set; }
         public Certificacao Certificacao { get; set; }
-        public Trilha Trilha { get; set; }
+        //public Trilha Trilha { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 import { Certificacao } from './certificacao.type';
 
 export interface Trilha {
+    id?: string;
     descricao: string;
     notificar: boolean;
     ativo: boolean;

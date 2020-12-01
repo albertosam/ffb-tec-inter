@@ -1,15 +1,33 @@
 <div class="py-5">
-    <div class="card">
-        <h5 class="card-header">Trilha de Certificação</h5>
+  <div class="card">
+    <h5 class="card-header">Tirlhas de Certificação</h5>
+    <div class="card-body">
+      <button class="btn btn-primary mb-3" (click)="new()">Novo</button>
+      <table class="table table-dark">
+        <tr>
+          <th>Descrição</th>
+          <th>Ano</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let item of trilhas">
+          <td>{{item.descricao}}</td>
+          <td>{{item.ano}}</td>
+          <td><button class="btn btn-info" (click)="trilha = item">Selecionar</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <div class="card m-t">
+        <h5 class="card-header">Trilha de Certificação</h5>        
         <div class="card-body">
-            <form id="formTrilha" #formluario="ngForm">
+            <form id="formTrilha" #formulario="ngForm">
                 <div class="form-group">
                     <label for="campo">Nome da Trilha</label>
-                    <input type="text" class="form-control" id="campo" [(ngModel)]="trilha.descricao" name="descricao" />
+                    <input type="text" class="form-control" id="campo" [(ngModel)]="trilha.descricao" name="descricao" required />
                 </div>
                 <div class="form-group">
                     <label for="anoCombobox">Ano</label>
-                    <select class="form-control" id="anoCombobox" [(ngModel)]="trilha.ano" name="ano">
+                    <select class="form-control" id="anoCombobox" [(ngModel)]="trilha.ano" name="ano" required>
                         <option value="0">Selecione</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
@@ -57,13 +75,13 @@
                 </div>
 
                 <div class="py-5">
-                    <button type="submit" class="btn btn-primary" (click)="add()">Salvar</button>
-                    <button type="button" class="btn btn-default m-l-md" onclick="limpar()">Limpar</button>
+                  <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="!formulario.valid">Salvar</button>
+                  <button type="button" class="btn btn-default m-l-md" onclick="limpar()">Limpar</button>
+
+                  <button type="button" class="btn btn-danger m-l-md right" *ngIf="trilha?.id" (click)="remove()">Excluir</button>
                 </div>
 
             </form>
         </div>
     </div>
 </div>
-
-{{trilha | json}}

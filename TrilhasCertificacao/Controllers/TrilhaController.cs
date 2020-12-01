@@ -49,5 +49,24 @@ namespace TrilhasCertificacao.Controllers
             await _trilhaRepository.AddAsync(trilha);
         }
 
+        [HttpPut("{id}")]
+        public async Task<Trilha> Put([FromRoute] Guid id, [FromBody] TrilhaUpdate update)
+        {
+            var trilha = await _trilhaRepository.GetAsync(id);
+
+            trilha.Ano = Convert.ToInt32(update.Ano);
+            trilha.Descricao = update.Descricao;
+            trilha.Notificar = update.Notificar;
+
+            return await _trilhaRepository.UpdateAsync(trilha);
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public Task Delete([FromRoute] Guid id)
+        {
+            return _trilhaRepository.DeleteAsync(id);
+        }
     }
 }
